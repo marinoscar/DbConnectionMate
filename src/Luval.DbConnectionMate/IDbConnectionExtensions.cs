@@ -198,24 +198,60 @@ namespace Luval.DbConnectionMate
 
         #region ExecuteScalarAsync
 
+        /// <summary>
+        /// Executes a scalar command asynchronously using the provided IDbConnection.
+        /// </summary>
+        /// <typeparam name="T">The type of the result.</typeparam>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="parameters">The parameters to add to the command.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation, with the result of the scalar command.</returns>
         public static async Task<T?> ExecuteScalarAsync<T>(this IDbConnection connection, string? commandText, IEnumerable<IDbDataParameter>? parameters, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
             return await ExecuteScalarAsync<T>(connection, commandText, IsolationLevel.ReadCommitted, parameters, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a scalar command asynchronously using the provided IDbConnection with a specified isolation level.
+        /// </summary>
+        /// <typeparam name="T">The type of the result.</typeparam>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="isolationLevel">The isolation level for the transaction.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation, with the result of the scalar command.</returns>
         public static async Task<T?> ExecuteScalarAsync<T>(this IDbConnection connection, string? commandText, IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
             return await ExecuteScalarAsync<T>(connection, commandText, isolationLevel, null, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a scalar command asynchronously using the provided IDbConnection.
+        /// </summary>
+        /// <typeparam name="T">The type of the result.</typeparam>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation, with the result of the scalar command.</returns>
         public static async Task<T?> ExecuteScalarAsync<T>(this IDbConnection connection, string? commandText, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
             return await ExecuteScalarAsync<T>(connection, commandText, IsolationLevel.ReadCommitted, null, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a scalar command asynchronously using the provided IDbConnection with a specified isolation level and parameters.
+        /// </summary>
+        /// <typeparam name="T">The type of the result.</typeparam>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="isolationLevel">The isolation level for the transaction.</param>
+        /// <param name="parameters">The parameters to add to the command.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation, with the result of the scalar command.</returns>
         public static async Task<T?> ExecuteScalarAsync<T>(this IDbConnection connection, string? commandText, IsolationLevel isolationLevel, IEnumerable<IDbDataParameter>? parameters, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
