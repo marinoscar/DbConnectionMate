@@ -349,24 +349,60 @@ namespace Luval.DbConnectionMate
 
         #region ExecuteReaderAsync
 
+        /// <summary>
+        /// Executes a command asynchronously using the provided IDbConnection and processes the result with a data reader.
+        /// </summary>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation, with the result being an enumerable of dictionaries where each dictionary represents a row with column names as keys and column values as values.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when commandText is null.</exception>
         public static async Task<IEnumerable<IDictionary<string, object>>> ExecuteReaderAsync(this IDbConnection connection, string? commandText, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
             return await ExecuteReaderAsync(connection, commandText, IsolationLevel.ReadCommitted, null, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a command asynchronously using the provided IDbConnection and processes the result with a data reader.
+        /// </summary>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="parameters">The parameters to add to the command.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation, with the result being an enumerable of dictionaries where each dictionary represents a row with column names as keys and column values as values.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when commandText is null.</exception>
         public static async Task<IEnumerable<IDictionary<string, object>>> ExecuteReaderAsync(this IDbConnection connection, string? commandText, IEnumerable<IDbDataParameter>? parameters, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
             return await ExecuteReaderAsync(connection, commandText, IsolationLevel.ReadCommitted, parameters, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a command asynchronously using the provided IDbConnection and processes the result with a data reader.
+        /// </summary>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="isolationLevel">The isolation level for the transaction.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation, with the result being an enumerable of dictionaries where each dictionary represents a row with column names as keys and column values as values.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when commandText is null.</exception>
         public static async Task<IEnumerable<IDictionary<string, object>>> ExecuteReaderAsync(this IDbConnection connection, string? commandText, IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
             return await ExecuteReaderAsync(connection, commandText, isolationLevel, null, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a command asynchronously using the provided IDbConnection and processes the result with a data reader.
+        /// </summary>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="isolationLevel">The isolation level for the transaction.</param>
+        /// <param name="parameters">The parameters to add to the command.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation, with the result being an enumerable of dictionaries where each dictionary represents a row with column names as keys and column values as values.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when commandText is null.</exception>
         public static async Task<IEnumerable<IDictionary<string, object>>> ExecuteReaderAsync(this IDbConnection connection, string? commandText, IsolationLevel isolationLevel, IEnumerable<IDbDataParameter>? parameters, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
