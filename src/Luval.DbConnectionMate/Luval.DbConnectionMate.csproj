@@ -5,10 +5,33 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ApplicationIcon>logo_icon.ico</ApplicationIcon>
+    <PackageId>DbConnectionMate</PackageId>
+    <Title>DbConnectionMate</Title>
+    <Authors>Oscar Marin</Authors>
+    <Company>Oscar Marin</Company>
+    <Copyright>Oscar Marin</Copyright>
+    <PackageProjectUrl>https://github.com/marinoscar/DbConnectionMate</PackageProjectUrl>
+    <PackageIcon>logo-nobg.png</PackageIcon>
+    <RepositoryUrl>https://github.com/marinoscar/DbConnectionMate</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>DbConnectionMate is a lightweight and intuitive library that extends the IDbConnection interface, simplifying the execution of basic SQL commands in .NET applications. It encapsulates common tasks like opening connections, managing transactions, and handling parameters, allowing you to focus on your application's core logic.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Include="logo_icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\media\logo-nobg.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
