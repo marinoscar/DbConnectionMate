@@ -39,24 +39,60 @@ namespace Luval.DbConnectionMate
 
         #region WithCommandAsync
 
+        // <summary>
+        // Executes a command asynchronously using the provided IDbConnection.
+        // </summary>
+        // <param name="connection">The database connection to use.</param>
+        // <param name="withCommand">The action to execute with the command.</param>
+        // <param name="commandText">The command text to execute.</param>
+        // <param name="parameters">The parameters to add to the command.</param>
+        // <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        // <returns>A task representing the asynchronous operation.</returns>
         public static Task WithCommandAsync(this IDbConnection connection, Action<IDbCommand> withCommand, string? commandText, IEnumerable<IDbDataParameter>? parameters, CancellationToken cancellationToken = default)
         {
             if (withCommand == null) throw new ArgumentNullException(nameof(withCommand));
             return WithCommandAsync(connection, commandText, withCommand, IsolationLevel.ReadCommitted, parameters, cancellationToken);
         }
 
+        // <summary>
+        // Executes a command asynchronously using the provided IDbConnection with a specified isolation level.
+        // </summary>
+        // <param name="connection">The database connection to use.</param>
+        // <param name="withCommand">The action to execute with the command.</param>
+        // <param name="commandText">The command text to execute.</param>
+        // <param name="isolationLevel">The isolation level for the transaction.</param>
+        // <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        // <returns>A task representing the asynchronous operation.</returns>
         public static Task WithCommandAsync(this IDbConnection connection, Action<IDbCommand> withCommand, string? commandText, IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
         {
             if (withCommand == null) throw new ArgumentNullException(nameof(withCommand));
             return WithCommandAsync(connection, commandText, withCommand, isolationLevel, null, cancellationToken);
         }
 
+        // <summary>
+        // Executes a command asynchronously using the provided IDbConnection.
+        // </summary>
+        // <param name="connection">The database connection to use.</param>
+        // <param name="withCommand">The action to execute with the command.</param>
+        // <param name="commandText">The command text to execute.</param>
+        // <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        // <returns>A task representing the asynchronous operation.</returns>
         public static Task WithCommandAsync(this IDbConnection connection, Action<IDbCommand> withCommand, string? commandText, CancellationToken cancellationToken = default)
         {
             if (withCommand == null) throw new ArgumentNullException(nameof(withCommand));
             return WithCommandAsync(connection, commandText, withCommand, IsolationLevel.ReadCommitted, null, cancellationToken);
         }
 
+        // <summary>
+        // Executes a command asynchronously using the provided IDbConnection with a specified isolation level and parameters.
+        // </summary>
+        // <param name="connection">The database connection to use.</param>
+        // <param name="commandText">The command text to execute.</param>
+        // <param name="withCommand">The action to execute with the command.</param>
+        // <param name="isolationLevel">The isolation level for the transaction.</param>
+        // <param name="parameters">The parameters to add to the command.</param>
+        // <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        // <returns>A task representing the asynchronous operation.</returns>
         public static async Task WithCommandAsync(this IDbConnection connection, string? commandText, Action<IDbCommand> withCommand, IsolationLevel isolationLevel, IEnumerable<IDbDataParameter>? parameters, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
