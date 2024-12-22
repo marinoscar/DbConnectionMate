@@ -270,6 +270,15 @@ namespace Luval.DbConnectionMate
 
         #region WithDataReaderAsync
 
+        /// <summary>
+        /// Executes a command asynchronously using the provided IDbConnection and processes the result with a data reader.
+        /// </summary>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="withReader">The action to execute with the data reader.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when commandText or withReader is null.</exception>
         public static async Task WithDataReaderAsync(this IDbConnection connection, string? commandText, Action<IDataReader> withReader, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
@@ -277,6 +286,16 @@ namespace Luval.DbConnectionMate
             await WithDataReaderAsync(connection, commandText, withReader, IsolationLevel.ReadCommitted, null, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a command asynchronously using the provided IDbConnection with a specified isolation level and processes the result with a data reader.
+        /// </summary>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="withReader">The action to execute with the data reader.</param>
+        /// <param name="isolationLevel">The isolation level for the transaction.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when commandText or withReader is null.</exception>
         public static async Task WithDataReaderAsync(this IDbConnection connection, string? commandText, Action<IDataReader> withReader, IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
@@ -284,6 +303,16 @@ namespace Luval.DbConnectionMate
             await WithDataReaderAsync(connection, commandText, withReader, isolationLevel, null, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a command asynchronously using the provided IDbConnection and processes the result with a data reader.
+        /// </summary>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="withReader">The action to execute with the data reader.</param>
+        /// <param name="parameters">The parameters to add to the command.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when commandText or withReader is null.</exception>
         public static async Task WithDataReaderAsync(this IDbConnection connection, string? commandText, Action<IDataReader> withReader, IEnumerable<IDbDataParameter>? parameters, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
@@ -291,6 +320,17 @@ namespace Luval.DbConnectionMate
             await WithDataReaderAsync(connection, commandText, withReader, IsolationLevel.ReadCommitted, parameters, cancellationToken);
         }
 
+        /// <summary>
+        /// Executes a command asynchronously using the provided IDbConnection with a specified isolation level and processes the result with a data reader.
+        /// </summary>
+        /// <param name="connection">The database connection to use.</param>
+        /// <param name="commandText">The command text to execute.</param>
+        /// <param name="withReader">The action to execute with the data reader.</param>
+        /// <param name="isolationLevel">The isolation level for the transaction.</param>
+        /// <param name="parameters">The parameters to add to the command.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when commandText or withReader is null.</exception>
         public static async Task WithDataReaderAsync(this IDbConnection connection, string? commandText, Action<IDataReader> withReader, IsolationLevel isolationLevel, IEnumerable<IDbDataParameter>? parameters, CancellationToken cancellationToken = default)
         {
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
