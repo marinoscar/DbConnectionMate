@@ -3,6 +3,9 @@ using System.Data.Common;
 
 namespace Luval.DbConnectionMate
 {
+    /// <summary>
+    /// Provides extension methods for the IDbConnection interface.
+    /// </summary>
     public static class IDbConnectionExtensions
     {
         #region Private Methods
