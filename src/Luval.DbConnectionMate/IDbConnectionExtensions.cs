@@ -189,9 +189,9 @@ namespace Luval.DbConnectionMate
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
 
             int result = 0;
-            var withCommand = new Action<IDbCommand>(async (c) =>
+            var withCommand = new Action<IDbCommand>((c) =>
             {
-                result = await Task.Run(() => c.ExecuteNonQuery(), cancellationToken);
+                result = c.ExecuteNonQuery();
             });
             await WithCommandAsync(connection, commandText, withCommand, isolationLevel, parameters, cancellationToken);
             return result;
@@ -260,13 +260,13 @@ namespace Luval.DbConnectionMate
             if (commandText == null) throw new ArgumentNullException(nameof(commandText));
 
             object? result = default;
-            var withCommand = new Action<IDbCommand>(async (c) =>
+            var withCommand = new Action<IDbCommand>((c) =>
             {
-                result = await Task.Run(() => c.ExecuteScalar(), cancellationToken);
+                result = c.ExecuteScalar();
             });
             await WithCommandAsync(connection, commandText, withCommand, isolationLevel, parameters, cancellationToken);
             if (DBNull.Value.Equals(result) || result == null) return default(T);
-            return (T)result;
+            return (T)Convert.ChangeType(result, typeof(T));
         }
 
         #endregion
